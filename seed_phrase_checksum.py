@@ -1,6 +1,10 @@
 # tool for checking a 12 word seed phrase (for crypto wallets)
 # execute the script and enter your 12 words (even though the last word is incorrect)
 # the tool will tell you the correct last words index
+# the script uses the human index from 1 to 2048
+
+# good article: https://vault12.com/learn/cryptocurrency-security-how-to/seed-phrase-dice/how-to-generate-a-seed-phrase-using-dice
+# word list: https://github.com/bitcoin/bips/blob/master/bip-0039/english.txt
 
 # PLS CREATE THE 12 WORD RANDOMLY
 # PLS EXECUTE THIS SCRIPT ON A SAFE, AIR GAPPED MACHINE
@@ -47,7 +51,8 @@ def checksum12words(data):
 
 
 def get_user_input():
-    user_input = input("Enter the 12 words as comma-separated numbers (e.g. 1, 2, 3, ..., 12): ")
+    user_input = input("Enter the 12 words as comma-separated numbers (e.g. 1, 2, 3, ..., 12)\n
+		Use human index (0-2048): ")
 
     data = [int(x.strip()) for x in user_input.split(",") if x.strip().isdigit()]
     if len(data) != 12:
