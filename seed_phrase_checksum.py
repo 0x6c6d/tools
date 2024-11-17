@@ -11,6 +11,7 @@
 
 import hashlib
 
+
 def checksum12words(data):
     if len(data) != 12:
         print("ERROR: Need 12 words numbers as input")
@@ -20,12 +21,14 @@ def checksum12words(data):
         return bin(s)[2:].zfill(l)
 
     def tohex(bytes_list):
-        return ''.join([hex(x)[2:].zfill(2) for x in bytes_list])
+        return "".join([hex(x)[2:].zfill(2) for x in bytes_list])
 
     # convert data to binary and create byte array
     bytes_list = [binstr(x - 1, 11) for x in data]  # convert 0 based index to binary
-    bin_str = ''.join(bytes_list)
-    byte_list = [int(bin_str[i:i+8], 2) for i in range(0, len(bin_str), 8)]  # split into 8 bit chunks and convert to int
+    bin_str = "".join(bytes_list)
+    byte_list = [
+        int(bin_str[i : i + 8], 2) for i in range(0, len(bin_str), 8)
+    ]  # split into 8 bit chunks and convert to int
 
     if len(byte_list) != 17:
         print("ERROR: Something is wrong, check your input")
@@ -51,8 +54,9 @@ def checksum12words(data):
 
 
 def get_user_input():
-    user_input = input("Enter the 12 words as comma-separated numbers (e.g. 1, 2, 3, ..., 12)\n
-		Use human index (0-2048): ")
+    user_input = input(
+        "Enter the 12 words as comma-separated numbers (e.g. 1, 2, 3, ..., 12)\nUse human index (0-2048): "
+    )
 
     data = [int(x.strip()) for x in user_input.split(",") if x.strip().isdigit()]
     if len(data) != 12:
@@ -60,5 +64,5 @@ def get_user_input():
     else:
         checksum12words(data)
 
-get_user_input()
 
+get_user_input()
