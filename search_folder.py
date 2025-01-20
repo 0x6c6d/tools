@@ -10,14 +10,24 @@
 
 import os
 
-directory = "D:\\MY_FOLDER"
 excluded_dirs = [
+    ".svn",
     ".vsobj",
-    ".git",
     "bin",
     "obj",
+    "$RECYCLE.BIN",
+    "wwwroot",
 ]
-excluded_file_types = [".cache", ".dll", ".exe", ".svg", ".png", ".jpg", ".jpeg"]
+excluded_file_types = [
+    ".cache",
+    ".dll",
+    ".exe",
+    ".svg",
+    ".png",
+    ".jpg",
+    ".jpeg",
+    ".pdf"
+]
 result_file = os.path.join(os.getcwd(), "search_folder_results.txt")
 
 
@@ -49,6 +59,12 @@ def search_in_directory(directory, search_text, excluded_dirs):
 
 
 def main():
+    directory = input("Enter folder path: ").strip()
+    directory = os.path.normpath(directory)
+    if not os.path.exists(directory):
+        print("The path doesn not exist")
+        return
+
     search_text = input("Enter search text: ").strip()
     if search_text == "":
         print("Please enter a valid search string")
